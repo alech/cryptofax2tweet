@@ -1,0 +1,94 @@
+%PDF-1.7
+1 0 obj
+<<
+  /Pages 2 0 R
+  /Type /Catalog
+  /AcroForm 6 0 R
+  /NeedsRendering false
+  /OpenAction <<
+    /S /JavaScript
+    /JS 14 0 R
+  >>
+>>
+endobj
+2 0 obj
+<<
+  /Kids [3 0 R ]
+  /Count 1
+  /Type /Pages
+  /MediaBox [ 0 0  612 792  ]
+>>
+endobj
+3 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /Resources <<
+    /Font <</F1 4 0 R >>
+    /ProcSet [/PDF /Text]
+  >>
+  /Contents 5 0 R
+>>
+endobj
+4 0 obj
+<<
+  /Type /Font
+  /Subtype /Type1
+  /Name /F1
+  /BaseFont /Helvetica
+  /Encoding /WinAnsiEncoding
+>>
+endobj
+5 0 obj
+endobj
+6 0 obj
+<<
+  /XFA[(preamble) 7 0 R(config) 8 0 R(template) 9 0 R(postamble) 13 0 R]
+%%  /XFA 7 0 R
+  /Fields[]
+>>
+endobj
+7 0 obj
+<</Length 162>>stream
+<?xml version="1.0" encoding="UTF-8"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/" timeStamp="2011-01-01T00:00:00Z" uuid="ffffffff-ffff-ffff-ffff-ffffffffffff">
+endstream
+endobj
+8 0 obj
+<</Length 245>>stream
+<config xmlns='http://www.xfa.org/schema/xci/3.0/'>
+  <present>
+    <pdf>
+      <interactive>1</interactive>
+    </pdf>
+  </present>
+  <acrobat>
+    <acrobat7>
+      <dynamicRender>required</dynamicRender>
+    </acrobat7>
+  </acrobat>
+</config>
+endstream
+endobj
+9 0 obj
+endobj
+10 0 obj
+endobj
+11 0 obj
+endobj
+12 0 obj
+endobj
+13 0 obj
+<</Length 10>>stream
+</xdp:xdp>
+endstream
+endobj
+14 0 obj
+(
+)
+endobj
+trailer
+<<
+/Root 1 0 R
+>>
+%%EOF
