@@ -1,0 +1,2 @@
+Run ./build_pdf.rb to create the cryptofax.pdf file.
+Open in Adobe Reader to create a dynamic, encrypted QR-code containing a tweet.
