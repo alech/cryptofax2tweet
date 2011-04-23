@@ -7,13 +7,14 @@ require 'rubygems'
 require 'mail'
 require 'tempfile'
 require 'base64'
-
-# get mail from STDIN
+require 'openssl'
 
 config = YAML.load(File.open(File.join(File.expand_path('~'),
                              '.cryptofax2tweet.cfg')))
 
+# get mail from STDIN
 mail_content = STDIN.read
+
 m = Mail.new(mail_content)
 m.attachments.each do |att|
 	if att.has_content_type? && att.content_type == 'application/pdf' then
@@ -29,12 +30,9 @@ m.attachments.each do |att|
 		# base 64 decode
 		decoded = Base64.decode64(decoded)
 
-		# decrypt (TODO: maybe use ruby openssl?)
-		t2 = Tempfile.new 'crypt'
-		t2.print decoded
-		t2.close
-		
-		decrypted = `#{config['openssl']} rsautl -decrypt -inkey #{config['key_location']} -in #{t2.path}`
+		# decrypt
+		key = OpenSSL::PKey::RSA.new(File.read(config['key_location']))
+		decrypted = key.private_decrypt decoded
 
 		puts decrypted
 
