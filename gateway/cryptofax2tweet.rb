@@ -10,10 +10,8 @@ require 'base64'
 
 # get mail from STDIN
 
-# TODO: use config file (YAML?)
-ZBARIMG = "/usr/local/bin/zbarimg"
-OPENSSL = "/usr/bin/openssl"
-KEY_LOCATION = "/crypthome/alech/devel/nradf/frickl/key.pem"
+config = YAML.load(File.open(File.join(File.expand_path('~'),
+                             '.cryptofax2tweet.cfg')))
 
 mail_content = STDIN.read
 m = Mail.new(mail_content)
@@ -23,7 +21,7 @@ m.attachments.each do |att|
 		t.print att.decoded
 		t.close
 		# QR code decode
-		decoded = `#{ZBARIMG} --raw #{t.path} 2>/dev/null`
+		decoded = `#{config['zbarimg']} --raw #{t.path} 2>/dev/null`
 		if decoded == '' then
 			STDERR.puts "could not decode QR code"
 			exit 1
@@ -36,7 +34,7 @@ m.attachments.each do |att|
 		t2.print decoded
 		t2.close
 		
-		decrypted = `#{OPENSSL} rsautl -decrypt -inkey #{KEY_LOCATION} -in #{t2.path}`
+		decrypted = `#{config['openssl']} rsautl -decrypt -inkey #{config['key_location']} -in #{t2.path}`
 
 		puts decrypted
 
