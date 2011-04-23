@@ -8,6 +8,7 @@ require 'mail'
 require 'tempfile'
 require 'base64'
 require 'openssl'
+require 'twitter'
 
 config = YAML.load(File.open(File.join(File.expand_path('~'),
                              '.cryptofax2tweet.cfg')))
@@ -36,6 +37,13 @@ m.attachments.each do |att|
 
 		puts decrypted
 
-		# TODO: tweet
+		Twitter.configure do |tw_config|
+			tw_config.consumer_key       = config['consumer_key']
+			tw_config.consumer_secret    = config['consumer_secret']
+			tw_config.oauth_token        = config['oauth_token']
+			tw_config.oauth_token_secret = config['oauth_token_secret']
+		end
+
+		Twitter.update(decrypted)
 	end
 end
