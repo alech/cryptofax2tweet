@@ -18,8 +18,8 @@
 				</value>
 			</draw>
 
-            <field name="barcode" x="5mm" y="30mm">
-				<ui><barcode type="QRcode" moduleHeight="1.4mm" moduleWidth="1.4mm" charEncoding="UTF-8" errorCorrectionLevel="3" name="bcui">
+            <field name="barcode" x="10mm" y="30mm">
+				<ui><barcode type="QRcode" moduleHeight="1.35mm" moduleWidth="1.35mm" charEncoding="UTF-8" errorCorrectionLevel="3" name="bcui">
 					</barcode>
 				</ui>
 					<!-- dataPrep="flateCompress"  -->
