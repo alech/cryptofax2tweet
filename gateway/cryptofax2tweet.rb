@@ -35,8 +35,6 @@ m.attachments.each do |att|
 		key = OpenSSL::PKey::RSA.new(File.read(config['key_location']))
 		decrypted = key.private_decrypt decoded
 
-		puts decrypted
-
 		Twitter.configure do |tw_config|
 			tw_config.consumer_key       = config['consumer_key']
 			tw_config.consumer_secret    = config['consumer_secret']
