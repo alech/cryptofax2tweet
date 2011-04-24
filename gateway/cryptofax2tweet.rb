@@ -18,7 +18,7 @@ mail_content = STDIN.read
 
 m = Mail.new(mail_content)
 m.attachments.each do |att|
-	if att.has_content_type? && att.content_type == 'application/pdf' then
+	if att.has_content_type? && att.content_type[/application\/pdf/] then
 		t = Tempfile.new 'pdf'
 		t.print att.decoded
 		t.close
