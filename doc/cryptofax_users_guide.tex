@@ -1,0 +1,67 @@
+\documentclass[DIV14,11pt]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage{microtype}
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0 0 0.6}
+\usepackage[colorlinks=true,urlcolor=darkblue]{hyperref}
+
+\setlength{\parskip}{2ex plus 0.5ex minus 0.5ex}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+
+\title{CryptoFax2Tweet}
+\author{Alexander Klink\\\texttt{\href{https://twitter.com/alech}{@alech}}\\\texttt{\href{mailto:cryptofax2tweet@alech.de}{cryptofax2tweet@alech.de}}}
+\date{April 25th, 2011}
+
+\maketitle
+
+\thispagestyle{empty}
+\section*{Using the CryptoFax2Tweet service}
+
+The CryptoFax2Tweet service allows you to send a tweet via fax.
+The tweet is encrypted using the RSA algorithm and encoded within a two-dimensional
+	barcode.
+It is intended for use when direct internet connections are unavailable to you,
+	such as in the case of political turmoil or revolutions.
+If you consider such a situation likely in the future, keeping the
+\texttt{\href{http://private.chaos-darmstadt.de/~revolution/cryptofax.pdf}{cryptofax.pdf}} file at hand may prove helpful at a later time.
+You are allowed and encouraged to pass on the file, too.
+
+To use the service, open the file \texttt{cryptofax.pdf} in Adobe Reader
+	(other PDF readers will most probably not work).
+Reader will then ask you what you want to tweet.
+Enter your tweet and send the resulting page with the barcode to the fax number
+	displayed on the page.
+The service on the other side will decode the barcode, decrypt the tweet and
+send it to Twitter as the \texttt{\href{https://twitter.com/cryptofax2tweet}{@cryptofax2tweet}} user.
+
+\section*{Security considerations}
+
+While the tweet itself is encrypted on the page that you are sending out,
+	someone monitoring both the phone line you are using and the
+	\texttt{@cryptofax2tweet} Twitter user can gain information on what tweet
+	you are sending by correlating the timing of the fax and the tweet.
+
+If this is a matter of concern for you, make a call on either
+	\emph{not using the service} or sending out the fax from a location as
+	anonymous as possible (for example a call shop or similar).
+If the page containing the barcode is intercepted before the fax is sent out,
+	the information on the page is protected by the RSA encryption and can not
+	be read by parties who do not have access to the RSA private key.
+
+\section*{Further reading and Thanks}
+
+% FIXME blog post
+If you are interested in how this service works on a technical level, a blog
+	post at FIXME provides more detailed information.
+
+A thanks goes out to \href{https://as250.net}{AS250.net}, a non-profit organisation providing
+	independent infrastructure for for Open Source and Community projects, which
+	is making this service possible by running the fax to email gateway for it.
+\end{document}
