@@ -22,8 +22,10 @@ m.attachments.each do |att|
 		t = Tempfile.new 'pdf'
 		t.print att.decoded
 		t.close
+		t2 = Tempfile.new 'png'
+		converted = `#{config['convert']} #{t.path} png:#{t2.path}`
 		# QR code decode
-		decoded = `#{config['zbarimg']} --raw #{t.path} 2>/dev/null`
+		decoded = `#{config['zbarimg']} --raw #{t2.path} 2>/dev/null`
 		if decoded == '' then
 			STDERR.puts "could not decode QR code"
 			exit 1
@@ -43,5 +45,8 @@ m.attachments.each do |att|
 		end
 
 		Twitter.update(decrypted)
+		t2.close
+		t2.unlink
+		t.unlink
 	end
 end
