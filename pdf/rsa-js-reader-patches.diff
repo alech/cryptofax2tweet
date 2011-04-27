@@ -1,0 +1,83 @@
+--- jsbn.js	2011-04-20 22:59:07.943448194 +0200
++++ jsbn.js.orig	2005-12-04 01:53:56.000000000 +0100
+@@ -67,11 +67,11 @@
+   }
+   return c;
+ }
+-if(j_lm && (typeof(navigator) != 'undefined') && (navigator.appName == "Microsoft Internet Explorer")) {
++if(j_lm && (navigator.appName == "Microsoft Internet Explorer")) {
+   BigInteger.prototype.am = am2;
+   dbits = 30;
+ }
+-else if(j_lm && (typeof(navigator) != 'undefined') && (navigator.appName != "Netscape")) {
++else if(j_lm && (navigator.appName != "Netscape")) {
+   BigInteger.prototype.am = am1;
+   dbits = 26;
+ }
+@@ -172,7 +172,7 @@
+ 
+ // (public) return string representation in given radix
+ function bnToString(b) {
+-  if(this.s < 0) return "-"+this.negate().ToString(b);
++  if(this.s < 0) return "-"+this.negate().toString(b);
+   var k;
+   if(b == 16) k = 4;
+   else if(b == 8) k = 3;
+@@ -547,7 +547,6 @@
+ 
+ // public
+ BigInteger.prototype.toString = bnToString;
+-BigInteger.prototype.ToString = bnToString;
+ BigInteger.prototype.negate = bnNegate;
+ BigInteger.prototype.abs = bnAbs;
+ BigInteger.prototype.compareTo = bnCompareTo;
+--- rng.js	2011-04-20 23:00:49.631448194 +0200
++++ rng.js.orig	2005-12-04 00:52:52.000000000 +0100
+@@ -27,7 +27,7 @@
+   rng_pool = new Array();
+   rng_pptr = 0;
+   var t;
+-  if((typeof(navigator) != 'undefined') && navigator.appName == "Netscape" && navigator.appVersion < "5" && (typeof(window) != 'undefined') && window.crypto) {
++  if(navigator.appName == "Netscape" && navigator.appVersion < "5" && window.crypto) {
+     // Extract entropy (256 bits) from NS4 RNG if available
+     var z = window.crypto.random(32);
+     for(t = 0; t < z.length; ++t)
+--- rsa.js	2011-04-20 23:00:38.635448194 +0200
++++ rsa.js.orig	2009-09-16 09:26:39.000000000 +0200
+@@ -19,15 +19,15 @@
+ 
+ function byte2Hex(b) {
+   if(b < 0x10)
+-    return "0" + b.ToString(16);
++    return "0" + b.toString(16);
+   else
+-    return b.ToString(16);
++    return b.toString(16);
+ }
+ 
+ // PKCS#1 (type 2, random) pad input string s to n bytes, and return a bigint
+ function pkcs1pad2(s,n) {
+   if(n < s.length + 11) { // TODO: fix for utf-8
+-    app.alert("Message too long for RSA");
++    alert("Message too long for RSA");
+     return null;
+   }
+   var ba = new Array();
+@@ -79,7 +79,7 @@
+     this.e = parseInt(E,16);
+   }
+   else
+-    app.alert("Invalid RSA public key");
++    alert("Invalid RSA public key");
+ }
+ 
+ // Perform raw public operation on "x": return x^e (mod n)
+@@ -93,7 +93,7 @@
+   if(m == null) return null;
+   var c = this.doPublic(m);
+   if(c == null) return null;
+-  var h = c.ToString(16);
++  var h = c.toString(16);
+   if((h.length & 1) == 0) return h; else return "0" + h;
+ }
+ 
