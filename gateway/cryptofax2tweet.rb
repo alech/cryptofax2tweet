@@ -38,9 +38,9 @@ m.attachments.each do |att|
 		t = Tempfile.new 'pdf'
 		t.print att.decoded
 		t.close
-		t2 = Tempfile.new 'png'
-		converted = `#{config['convert']} #{t.path} png:#{t2.path}`
-		logfile.puts "converted to PNG: #{converted}" if DEBUG
+		t2 = Tempfile.new 'ppm'
+		converted = `#{config['pdftoppm']} #{t.path} #{t2.path}`
+		logfile.puts "converted to PPM: #{converted}" if DEBUG
 		# QR code decode
 		stderr_out = DEBUG ? File.join(File.expand_path('~'), 'debuglog', "#{logtime}.stderr") : '/dev/null'
 
