@@ -17,13 +17,13 @@ logtime = Time.new.to_i
 DEBUG = false
 logfile = 
 if DEBUG then
-	File.open File.join(File.expand_path('~'), "#{logtime}.log"), 'w'
+	File.open File.join(File.expand_path('~'), 'debuglog', "#{logtime}.log"), 'w'
 end
 
 # get mail from STDIN
 mail_content = STDIN.read
 if DEBUG then
-	File.open File.join(File.expand_path('~'), "#{logtime}.mail"), 'w' do |f|
+	File.open File.join(File.expand_path('~'), 'debuglog', "#{logtime}.mail"), 'w' do |f|
 		f.print mail_content
 	end
 end
@@ -42,7 +42,7 @@ m.attachments.each do |att|
 		converted = `#{config['convert']} #{t.path} png:#{t2.path}`
 		logfile.puts "converted to PNG: #{converted}" if DEBUG
 		# QR code decode
-		stderr_out = DEBUG ? File.join(File.expand_path('~'), "#{logtime.stderr}") : '/dev/null'
+		stderr_out = DEBUG ? File.join(File.expand_path('~'), 'debuglog', "#{logtime}.stderr") : '/dev/null'
 
 		decoded = `#{config['zbarimg']} --raw #{t2.path} 2>#{stderr_out}`
 		if $?.exitstatus != 0 then
